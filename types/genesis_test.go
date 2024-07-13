@@ -48,6 +48,13 @@ func TestGenesisBad(t *testing.T) {
 				`},"power":"10","name":""}` +
 				`]}`,
 		),
+		// invalid pub_key type
+		[]byte(
+			`{"chain_id": "test-chain-QDKdJr", "validators":[` +
+				`{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"AscrAil1bbhyKgSgsdG0r2bAtenks6XIyMboux7r97TA"` +
+				`},"power":"10","name":""}` +
+				`]}`,
+		),
 	}
 
 	for _, testCase := range testCases {

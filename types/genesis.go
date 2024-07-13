@@ -96,6 +96,9 @@ func (genDoc *GenesisDoc) ValidateAndComplete() error {
 		if len(v.Address) == 0 {
 			genDoc.Validators[i].Address = v.PubKey.Address()
 		}
+		if !IsValidPubkeyType(genDoc.ConsensusParams.Validator, v.PubKey.Type()) {
+			return fmt.Errorf("unsupported pub key type '%v' for validator '%v' in the genesis file", v.PubKey.Type(), v)
+		}
 	}
 
 	if genDoc.GenesisTime.IsZero() {
